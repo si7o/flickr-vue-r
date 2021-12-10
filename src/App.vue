@@ -25,12 +25,13 @@
 <style>
   @font-face {
     font-family: "Roboto";
-    src: local("Roboto"), url("/fonts/Roboto-Bold.ttf") format("truetype");
+    src: local("Roboto"), url("./assets/fonts/Roboto-Bold.ttf") format("truetype");
     font-weight: bold;
   }
   @font-face {
     font-family: "Roboto";
-    src: local("Roboto"), url("/fonts/Roboto-Regular.ttf") format("truetype");
+    src: local("Roboto"),
+      url("./assets/fonts/Roboto-Regular.ttf") format("truetype");
     font-weight: normal;
   }
 
