@@ -1,30 +1,246 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
+  <NavBar />
   <router-view />
+  <PageLoader :show="isLoading" />
 </template>
 
+<script>
+  import NavBar from "./components/NavBar.vue";
+  import PageLoader from "./components/PageLoader.vue";
+
+  export default {
+    name: "App",
+    components: { NavBar, PageLoader },
+    computed: {
+      isLoading() {
+        return (
+          this.$store.state.home.status === "loading" ||
+          this.$store.state.user.status === "loading"
+        );
+      },
+    },
+  };
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  @font-face {
+    font-family: "Roboto";
+    src: local("Roboto"), url("/fonts/Roboto-Bold.ttf") format("truetype");
+    font-weight: bold;
+  }
+  @font-face {
+    font-family: "Roboto";
+    src: local("Roboto"), url("/fonts/Roboto-Regular.ttf") format("truetype");
+    font-weight: normal;
+  }
 
-#nav {
-  padding: 30px;
-}
+  body {
+    background-color: #fafafa;
+    color: #252525;
+    margin: 0;
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+    font-size: 14px;
+    font-family: "Roboto";
+  }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  p {
+    margin: 2px 0;
+  }
+
+  section {
+    margin: 16px 42px;
+  }
+
+  /****************************************/
+  /*    HEADINGS                          */
+  /****************************************/
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    font-weight: normal;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 34px;
+  }
+
+  h3 {
+    font-size: 28px;
+  }
+
+  h4 {
+    font-size: 22px;
+  }
+
+  @media (max-width: 620px) {
+    h1 {
+      font-size: 28px;
+    }
+
+    h2 {
+      font-size: 22px;
+    }
+
+    h3 {
+      font-size: 20px;
+    }
+
+    h4 {
+      font-size: 18px;
+    }
+  }
+
+  /****************************************/
+  /*    FORM                              */
+  /****************************************/
+
+  input {
+    margin: 0;
+    border: none;
+  }
+
+  button {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  /****************************************/
+  /*    LINKS                             */
+  /****************************************/
+
+  a,
+  a:visited {
+    color: #252525;
+  }
+
+  a:hover {
+    color: #ffcc00;
+    text-decoration: underline;
+  }
+
+  a.flickr {
+    background-color: #ffffff88;
+    border-radius: 2px;
+    color: #0063dc !important;
+    padding: 2px 4px;
+  }
+
+  a.flickr i {
+    color: #ff0084;
+    text-transform: lowercase;
+    font-style: normal;
+  }
+
+  a.flickr:hover {
+    color: #ff0084 !important;
+  }
+
+  /****************************************/
+  /*    ICONS                             */
+  /****************************************/
+
+  .gg-chevron {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 32px;
+    height: 32px;
+    transition: all 0.1s ease;
+    cursor: pointer;
+  }
+  .gg-chevron::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-bottom: 4px solid;
+    border-right: 4px solid;
+    transform: rotate(-45deg);
+    left: 0px;
+    top: 6px;
+    transition: all 0.1s ease;
+  }
+  .gg-chevron::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-bottom: 4px solid #00000044;
+    border-right: 4px solid #00000044;
+    transform: rotate(-45deg);
+    left: -3px;
+    top: 6px;
+    transition: all 0.1s ease;
+  }
+  .gg-chevron:hover::after {
+    left: 4px;
+  }
+  .gg-chevron:hover::before {
+    left: 1px;
+  }
+  .gg-chevron.up {
+    transform: rotate(-90deg);
+  }
+  .gg-chevron.left {
+    transform: rotate(180deg);
+  }
+  .gg-chevron.down {
+    transform: rotate(90deg);
+  }
+
+  /**************************************************/
+  /*     SKELETON LOADER                            */
+  /**************************************************/
+  .loading::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -100%;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      to right,
+      #e9e9e900 0%,
+      #e9e9e9 50%,
+      #e9e9e900 100%
+    );
+    animation: load 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes load {
+    from {
+      left: -100%;
+    }
+    to {
+      left: 100%;
+    }
+  }
+
+  /******************************************************/
+  /* TRANSITIONS                                        */
+  /******************************************************/
+
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 </style>
