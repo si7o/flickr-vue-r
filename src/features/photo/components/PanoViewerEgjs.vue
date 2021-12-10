@@ -6,6 +6,7 @@
     :image="image"
     :fov="88"
     projection-type="equirectangular"
+    :show-pole-point="true"
     @ready="handlePanoReady"
     @error="handlePanoError"
   />
