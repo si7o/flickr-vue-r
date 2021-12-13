@@ -7,7 +7,7 @@ Both, vuejs & react flickr vr viewers are a new version of an old project I did 
 
 And you can also check [my equirectangular panoramas from flickr](https://si7o.github.io/flickr-vue-r/#/photos/sitoo/) ;-). 
 
-A small Equi
+-----------------------------
 
 ## Project setup
 ```bash
