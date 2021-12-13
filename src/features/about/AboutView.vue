@@ -20,8 +20,10 @@
       >
         flick<i>r</i>
       </a>
-      images made using React to learn a bit about Redux and, in the meantime,
-      re-design an old project
+      images.
+    </p>
+    <p>
+      This UI is a remake of an old project,
       <a
         href="https://vr.andeandaran.com"
         referrerPolicy="no-referrer"
@@ -29,7 +31,8 @@
         target="_blank"
       >
         <i>skybox</i>
-      </a>
+      </a>, and it is made using Vuejs + Vuex to revisit vuejs development and also compare it
+      to React+redux.
     </p>
     <p>
       You can check the source code in GitHub:
@@ -95,5 +98,9 @@
   #aboutpage {
     margin: 16px 42px;
     font-size: larger;
+
+    p {
+      margin-bottom: 15px;
+    }
   }
 </style>
